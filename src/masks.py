@@ -5,7 +5,7 @@ def get_mask_card_number(card_number: str) -> str:
     # Следующие 2 цифры остаются видимыми
     second_part = card_number[4:6]
     # Заменяем остальные цифры на звездочки
-    masked_part = '*' * (len(card_number) - 14)
+    masked_part = "*" * (len(card_number) - 14)
     # Последние 4 цифры остаются видимыми
     last_part = card_number[-4:]
     # Формируем итоговую строку
