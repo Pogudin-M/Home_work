@@ -1,4 +1,4 @@
-def filter_by_state(data, state='EXECUTED'):
+def filter_by_state(data, state="EXECUTED"):
     """
     Фильтрует список словарей по значению ключа 'state'.
 
@@ -9,8 +9,12 @@ def filter_by_state(data, state='EXECUTED'):
     filtered_data = []  # Создаем пустой список для хранения отфильтрованных данных
 
     for item in data:  # Проходим по каждому словарю в списке
-        if item.get('state') == state:  # Проверяем, соответствует ли значение 'state' заданному
-            filtered_data.append(item)  # Если соответствует, добавляем словарь в новый список
+        if (
+            item.get("state") == state
+        ):  # Проверяем, соответствует ли значение 'state' заданному
+            filtered_data.append(
+                item
+            )  # Если соответствует, добавляем словарь в новый список
 
     return filtered_data  # Возвращаем отфильтрованный список
 
@@ -26,7 +30,7 @@ def sort_by_date(data, descending=True):
     # Создаем новый список, чтобы не изменять оригинальный
     sorted_data = []
     # Сначала создаем список дат
-    dates = [item['date'] for item in data]
+    dates = [item["date"] for item in data]
 
     # Сортируем даты
     dates.sort(reverse=descending)
@@ -34,7 +38,7 @@ def sort_by_date(data, descending=True):
     # Проходим по отсортированным датам и собираем словари
     for date in dates:
         for item in data:
-            if item['date'] == date:
+            if item["date"] == date:
                 sorted_data.append(item)
                 break  # Прерываем внутренний цикл, чтобы не добавлять один и тот же словарь несколько раз
 
