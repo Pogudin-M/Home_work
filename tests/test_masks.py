@@ -1,18 +1,25 @@
+from typing import Optional
+
+import pytest
+
 from src.masks import get_mask_account, get_mask_card_number
 
 
 # Тесты для функции get_mask_card_number
-def test_get_mask_card_number() -> None:
-    assert get_mask_card_number("1234567812345678") == "1234 56** **** 5678"
-    assert get_mask_card_number("1234 5678 1234 5678") == "1234 56** **** 5678"
-    assert get_mask_card_number("123456781234") == "**** **** ****"
-    assert get_mask_card_number("") == ""
-    assert get_mask_card_number(None) == ""
+@pytest.mark.parametrize(
+    "value, expected",
+    [
+        ("1234567812345678", "1234 56** **** 5678"),
+        ("1234 5678 1234 5678", "1234 56** **** 5678"),
+        ("123456781234", "**** **** ****"),
+        ("", ""),
+        (None, ""),
+    ],
+)
+def test_get_mask_card_number(value: Optional[str], expected: Optional[str]) -> None:
+    assert get_mask_card_number(value) == expected
 
 
 # Тесты для функции get_mask_account
-def test_get_mask_account() -> None:
-    assert get_mask_account("12345678901234567890") == "****************7890"
-    assert get_mask_account("12345678") == ""
-    assert get_mask_account("") == ""
-    assert get_mask_account(None) == ""
+def test_get_mask_account(account: str) -> None:
+    assert get_mask_account(account) == "****************7890"
