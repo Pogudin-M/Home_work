@@ -1,5 +1,7 @@
 from typing import Any, Dict, List
 
+import pytest
+
 from src.generators import card_number_generator, filter_by_currency, transaction_descriptions
 
 
@@ -23,19 +25,38 @@ def test_filter_by_currency_empty_list() -> None:
     )  # Пустой список должен возвращать пустой список
 
 
-def test_transaction_descriptions(transaction: List[Dict[str, Any]]) -> None:
+@pytest.mark.parametrize(
+    "transaction, expected_descriptions",
+    [
+        (
+            [
+                {"id": 1, "description": "Перевод организации"},
+                {"id": 2, "description": "Перевод со счета на счет"},
+                {"id": 3, "description": "Перевод с карты на карту"},
+            ],
+            [
+                "Перевод организации",
+                "Перевод со счета на счет",
+                "Перевод с карты на карту",
+            ],
+        ),
+        (
+            [
+                {"id": 1, "description": "Перевод организации"},
+                {"id": 2},  # Эта транзакция без описания
+            ],
+            ["Перевод организации", ""],  # Пустая строка для транзакции без описания
+        ),
+        ([], []),  # Пустой список транзакций  # Ожидаем пустой список описаний
+    ],
+)
+def test_transaction_descriptions(
+    transaction: Any, expected_descriptions: list
+) -> None:
     descriptions = list(transaction_descriptions(transaction))
-    assert descriptions == [
-        "Перевод организации",
-        "Перевод со счета на счет",
-        "Перевод со счета на счет",
-        "Перевод с карты на карту",
-        "Перевод организации",
-    ]
-
     assert (
-        list(transaction_descriptions([])) == []
-    )  # Пустой список должен возвращать пустой список
+        descriptions == expected_descriptions
+    )  # Проверяем, что описания соответствуют ожидаемым
 
 
 # Тест генератора номеров карт
