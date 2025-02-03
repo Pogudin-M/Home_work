@@ -14,3 +14,19 @@ error_function ошибка: ZeroDivisionError. Входные данные: (1,
 successful_function успешно выполнена
 Начало выполнения error_function с аргументами: (1, 0), {}
 error_function ошибка: ZeroDivisionError. Входные данные: (1, 0), {}
+Начало выполнения successful_function с аргументами: (1, 2), {}
+successful_function успешно выполнена
+Начало выполнения error_function с аргументами: (1, 0), {}
+error_function ошибка: ZeroDivisionError. Входные данные: (1, 0), {}
+Начало выполнения successful_function с аргументами: (1, 2), {}
+successful_function успешно выполнена
+Начало выполнения error_function с аргументами: (1, 0), {}
+error_function ошибка: ZeroDivisionError. Входные данные: (1, 0), {}
+Начало выполнения successful_function с аргументами: (1, 2), {}
+successful_function успешно выполнена
+Начало выполнения error_function с аргументами: (1, 0), {}
+error_function ошибка: ZeroDivisionError. Входные данные: (1, 0), {}
+Начало выполнения successful_function с аргументами: (1, 2), {}
+successful_function успешно выполнена
+Начало выполнения error_function с аргументами: (1, 0), {}
+error_function ошибка: ZeroDivisionError. Входные данные: (1, 0), {}
