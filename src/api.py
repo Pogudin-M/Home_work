@@ -6,10 +6,10 @@ from dotenv import load_dotenv
 load_dotenv("../.env")
 
 
-def exchange(conversion_file: dict) -> dict[str, float]:
+def exchange(conversion_file: dict) -> float:
     """Конвертирует сумму из одной валюты в рубли (RUB), используя API для конвертации валют"""
     if conversion_file["operationAmount"]["currency"]["code"] == "RUB":
-        return conversion_file["operationAmount"]["amount"]
+        return float(conversion_file["operationAmount"]["amount"])
     else:
         convert_to = "RUB"
         convert_from = conversion_file["operationAmount"]["currency"]["code"]
@@ -22,7 +22,7 @@ def exchange(conversion_file: dict) -> dict[str, float]:
         response = requests.request("GET", url, headers=headers, data=payload)
 
         result = response.json()["result"]
-        return result
+        return float(result)
 
 
 if __name__ == "__main__":
